@@ -34,9 +34,8 @@ text {
 }
 
 #chartDiv {
-    background-image: url('./croppedaustin.png');
+    background-image: url('../images/croppedaustin.png');
     width: 960px;
     height: 500px;
     margin: 0 auto;
-    overflow: hidden;
 }

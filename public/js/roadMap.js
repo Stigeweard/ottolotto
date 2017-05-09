@@ -19,7 +19,7 @@ var force = d3.layout.force()
     .size([width, height])
     // refactor distance to be dependent on number of nodes
     .linkDistance(120)
-    .charge(-800)
+    .charge(-500*links.length)
     .on("tick", tick)
     .start();
 
@@ -64,7 +64,7 @@ var text = svg.append("g").selectAll("text")
     .data(force.nodes())
     .enter().append("text")
     //adjusts text placement, adjust size in css
-    .attr("x", 20)
+    .attr("x", 24)
     .attr("y", ".31em")
     .text(function(d) {
         return d.name;

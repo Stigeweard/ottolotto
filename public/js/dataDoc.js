@@ -1,3 +1,4 @@
+// replace data variable with some sort of view engine template data
 let data = {
     'map': [{
         'to': 1,
