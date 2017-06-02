@@ -1,4 +1,4 @@
-$(function() {
+$(function(){
     var nodes = {};
     var width = 960,
     height = 500;
@@ -7,24 +7,19 @@ $(function() {
         link.source = nodes[link.source] || (nodes[link.source] = {
             name: link.source,
             url: link.sourceUrl,
-            x: width/2,
-            y: height/2
+            css_class: link.scss,
+            x: width/3 + Math.random()*width*1/3,
+            y: height/3 + Math.random()*height*1/3
         });
         link.target = nodes[link.target] || (nodes[link.target] = {
             name: link.target,
             url: link.targetUrl,
-            x: width/2,
-            y: height/2
+            css_class: link.tcss,
+            x: width/3 + Math.random()*width*1/3,
+            y: height/3 + Math.random()*height*1/3
         });
     });
 
-    for (var node in nodes) {
-        nodes[node].x = width/2;
-        nodes[node].y = height/2;
-        nodes[node].px = width/2;
-        nodes[node].py = height/2;
-    }
-    console.log(nodes);
     var force = d3.layout.force()
         .nodes(d3.values(nodes))
         .links(links)
@@ -34,15 +29,14 @@ $(function() {
         .charge(-500)
         .on('tick', tick)
         .start();
-        // .stop();
     var svg = d3.select('#chartDiv').append('svg')
         .attr('width', width)
         .attr('height', height);
 
-        // force.velocityDecay(1)
 
 
     // Per-type markers, as they don't inherit styles.
+// arrow
     svg.append('defs').selectAll('marker')
         .data(['suit', 'licensing', 'resolved'])
         .enter().append('marker')
@@ -59,6 +53,7 @@ $(function() {
         .append('path')
         .attr('d', 'M0,-5L10,0L0,5');
 
+// lines
     var path = svg.append('g').selectAll('path')
         .data(force.links())
         .enter().append('path')
@@ -69,15 +64,18 @@ $(function() {
             return 'url(#' + d.type + ')';
         });
 
+// node circles
     var circle = svg.append('g').selectAll('circle')
         .data(force.nodes())
         .enter().append('circle')
         .attr('class', function(d) {
-            return 'circles _' + d.index;
+            return 'circles _' + d.index+' '+d.css_class;
         })
         .attr('r', 14)
+        // makes draggable
     // .call(force.drag);
 
+// text placement
     var text = svg.append('g').selectAll('text')
         .data(force.nodes())
         .enter().append('text')
@@ -91,6 +89,8 @@ $(function() {
         .text(function(d) {
             return d.name;
         });
+
+    svg.append('div')
 
     $('.circles').hover(show, hide);
 
@@ -108,32 +108,8 @@ $(function() {
     }
 
     // Use elliptical arc path segments to doubly-encode directionality.
-    let first = true;
+    var first = true;
     function tick() {
-        if (first) {
-            for (var node in nodes) {
-                nodes[node].x = width/2;
-                nodes[node].y = height/2;
-                // nodes[node].px = width/2;
-                // nodes[node].py = height/2;
-            }
-            first = false;
-        }
-        for (var node in nodes) {
-            if (nodes[node].x < width/3) {
-                nodes[node].x = width/3;
-            }
-            if (nodes[node].y < height/3) {
-                nodes[node].y = height/3;
-            }
-            if (nodes[node].x > width*.6) {
-                nodes[node].x = width*.6;
-            }
-            if (nodes[node].y > height*.6) {
-                nodes[node].y = height*.6;
-            }
-        }
-        console.log(nodes['Learn Functions']);
         path.attr('d', linkArc);
         circle.attr('transform', transform);
         text.attr('transform', transform);

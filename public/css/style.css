@@ -23,6 +23,10 @@
     opacity: 1;
 }
 
+.attemptable {
+    fill: green;
+}
+
 .circles:hover {
     cursor: pointer;
     opacity: 0.7;
@@ -40,4 +44,23 @@ text {
     width: 960px;
     height: 500px;
     margin: 0 auto;
+}
+
+.label {
+    display: flex;
+}
+
+.arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 20px solid blue;
+}
+
+.text-box {
+    width: 40px;
+    height: 40px;
+    background-color: lightblue;
+    border-radius: 0px 5px 5px 0px;
 }
