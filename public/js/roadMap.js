@@ -2,6 +2,11 @@ $(function(){
     var nodes = {};
     var width = 960,
     height = 500;
+
+    // enter different strings to seed a different loading animation
+    Math.seedrandom('whaaaat');
+    //whaaaat
+
     // Compute the distinct nodes from the links.
     links.forEach(function(link) {
         link.source = nodes[link.source] || (nodes[link.source] = {
@@ -69,17 +74,33 @@ $(function(){
         .data(force.nodes())
         .enter().append('circle')
         .attr('class', function(d) {
-            return 'circles _' + d.index+' '+d.css_class;
+            return 'circles _' + d.index+' ' + d.css_class;
         })
         .attr('r', 14)
         // makes draggable
     // .call(force.drag);
 
+    // var text = svg.append('g').selectAll('foreignObject')
+    //     .data(force.nodes())
+    //     .enter().append('foreignObject')
+    //
+    // var label = text.append('xhtml:body')
+    //     .html(function(d) {
+    //         return `<div class="label">
+    //             <div class="arrow-left"></div>
+    //             <div class="text-box">
+    //                 <span class="lesson-text">${d.name}</span>
+    //             </div>
+    //         </div>`
+    //     })
+
+
 // text placement
     var text = svg.append('g').selectAll('text')
         .data(force.nodes())
         .enter().append('text')
-        // .classed('labels', true)
+
+
         .attr('class', function(d) {
             return '_'+d.index;
         })
@@ -90,7 +111,6 @@ $(function(){
             return d.name;
         });
 
-    svg.append('div')
 
     $('.circles').hover(show, hide);
 
@@ -108,7 +128,6 @@ $(function(){
     }
 
     // Use elliptical arc path segments to doubly-encode directionality.
-    var first = true;
     function tick() {
         path.attr('d', linkArc);
         circle.attr('transform', transform);

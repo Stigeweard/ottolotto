@@ -1,7 +1,7 @@
 //TODO:
-//  add pretty label
-//  add css class thing
-//  bonus: add seeded random num
+//  add pretty label - fffuuuuuuuuuucckckkkckkkkk
+//  add css class thing - done
+//  bonus: add seeded random num - done
 
 
 // replace data variable with some sort of view engine template data
@@ -26,12 +26,12 @@ var data = {
         2: {
             'name': 'Learn To Print',
             'url': 'https://www.google.com/',
-            'css_class': 'attemptable',
+            'css_class': 'done',
         },
         1: {
             'name': 'Learn Functions',
             'url': 'https://www.yahoo.com/',
-            'css_class': 'attemptable',
+            'css_class': 'locked',
         },
         3: {
             'name': 'Learn The Command Line',

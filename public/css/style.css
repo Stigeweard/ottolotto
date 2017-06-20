@@ -24,7 +24,15 @@
 }
 
 .attemptable {
+    fill: yellow;
+}
+
+.done {
     fill: green;
+}
+
+.locked {
+    fill: red;
 }
 
 .circles:hover {
@@ -36,7 +44,7 @@ text {
     font: 14px sans-serif;
     pointer-events: none;
     text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
-    visibility: hidden;
+    /*visibility: hidden;*/
 }
 
 #chartDiv {
@@ -44,10 +52,12 @@ text {
     width: 960px;
     height: 500px;
     margin: 0 auto;
+    /*z-index: 5;*/
 }
 
 .label {
     display: flex;
+    z-index: 500;
 }
 
 .arrow-left {
@@ -55,12 +65,23 @@ text {
     height: 0;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
-    border-right: 20px solid blue;
+    border-right: 20px solid lightblue;
+    z-index: 500;
 }
 
 .text-box {
-    width: 40px;
+    position: relative;
+    /*display: block;*/
+    /*width: auto;*/
     height: 40px;
     background-color: lightblue;
     border-radius: 0px 5px 5px 0px;
+    line-height: 40px;
+    padding-right: 5px;
+    z-index: 500;
+}
+
+.lesson-text {
+    width: 100%;
+    z-index: 501;
 }
